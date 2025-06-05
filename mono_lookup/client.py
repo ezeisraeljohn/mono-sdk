@@ -46,17 +46,6 @@ class MonoLookupClient:
         Returns:
             dict: BVN lookup response.
 
-        Example:
-            >>> client.initiate_bvn_lookup({"bvn": "12345678901"})
-            {
-                "status": "successful",
-                "message": "BVN consent initiated successfully",
-                "data": {
-                    "session_id": "session_abcdef1234567890",
-                    "expires_in": 300
-                }
-            }
-
         Reference:
             - POST /v2/lookup/bvn/initiate
         """
@@ -76,16 +65,6 @@ class MonoLookupClient:
 
         Returns:
             dict: OTP verification response.
-
-        Example:
-            >>> client.verify_bvn_otp({"otp": "123456"}, "session_abcdef1234567890")
-            {
-                "status": "successful",
-                "message": "OTP verified successfully",
-                "data": {
-                    "verified": True
-                }
-            }
 
         Reference:
             - POST /v2/lookup/bvn/verify
@@ -108,19 +87,6 @@ class MonoLookupClient:
         Returns:
             dict: BVN details.
 
-        Example:
-            >>> client.fetch_bvn_details({}, "session_abcdef1234567890")
-            {
-                "status": "successful",
-                "message": "BVN details retrieved successfully",
-                "data": {
-                    "bvn": "12345678901",
-                    "name": "John Doe",
-                    "email": "john.doe@example.com",
-                    "phone_number": "08012345678"
-                }
-            }
-
         Reference:
             - POST /v2/lookup/bvn/details
         """
@@ -142,18 +108,6 @@ class MonoLookupClient:
         Returns:
             dict: Business lookup result.
 
-        Example:
-            >>> client.lookup_business("John's Bakery")
-            {
-                "status": "successful",
-                "message": "Business lookup successful",
-                "data": {
-                    "name": "John's Bakery",
-                    "registration_number": "BN123456789",
-                    "status": "Active"
-                }
-            }
-
         Reference:
             - GET /v1/cac/lookup
         """
@@ -172,25 +126,6 @@ class MonoLookupClient:
 
         Returns:
             dict: Company search result.
-
-        Example:
-            >>> client.search_company("Bakery")
-            {
-                "status": "successful",
-                "message": "Company search successful",
-                "data": [
-                    {
-                        "name": "John's Bakery",
-                        "registration_number": "BN123456789",
-                        "status": "Active"
-                    },
-                    {
-                        "name": "Doe's Bakery",
-                        "registration_number": "BN987654321",
-                        "status": "Inactive"
-                    }
-                ]
-            }
 
         Reference:
             - GET /v3/lookup/cac
@@ -211,23 +146,6 @@ class MonoLookupClient:
         Returns:
             dict: Shareholder information.
 
-        Example:
-            >>> client.company_shareholders("company_abcdef1234567890")
-            {
-                "status": "successful",
-                "message": "Shareholder information retrieved",
-                "data": [
-                    {
-                        "name": "Jane Doe",
-                        "percentage": 60
-                    },
-                    {
-                        "name": "John Smith",
-                        "percentage": 40
-                    }
-                ]
-            }
-
         Reference:
             - GET /v3/lookup/cac/company/{company_id}
         """
@@ -246,18 +164,6 @@ class MonoLookupClient:
 
         Returns:
             dict: Secretary information.
-
-        Example:
-            >>> client.company_secretary("company_abcdef1234567890")
-            {
-                "status": "successful",
-                "message": "Secretary information retrieved",
-                "data": {
-                    "name": "Mary Jane",
-                    "phone_number": "08098765432",
-                    "email": "mary.jane@example.com"
-                }
-            }
 
         Reference:
             - GET /v3/lookup/cac/company/{company_id}/secretary
@@ -278,23 +184,6 @@ class MonoLookupClient:
         Returns:
             dict: Directors information.
 
-        Example:
-            >>> client.company_directors("company_abcdef1234567890")
-            {
-                "status": "successful",
-                "message": "Directors information retrieved",
-                "data": [
-                    {
-                        "name": "Alice Johnson",
-                        "position": "Managing Director"
-                    },
-                    {
-                        "name": "Bob Brown",
-                        "position": "Technical Director"
-                    }
-                ]
-            }
-
         Reference:
             - GET /v3/lookup/cac/company/{company_id}/directors
         """
@@ -314,17 +203,6 @@ class MonoLookupClient:
         Returns:
             dict: Previous address information.
 
-        Example:
-            >>> client.company_previous_address("company_abcdef1234567890")
-            {
-                "status": "successful",
-                "message": "Previous address information retrieved",
-                "data": {
-                    "previous_address": "123 Old Street, Lagos",
-                    "effective_date": "2020-01-01"
-                }
-            }
-
         Reference:
             - GET /v3/lookup/cac/company/{company_id}/previous-address
         """
@@ -343,20 +221,6 @@ class MonoLookupClient:
 
         Returns:
             dict: Change of name history.
-
-        Example:
-            >>> client.company_change_of_name("company_abcdef1234567890")
-            {
-                "status": "successful",
-                "message": "Change of name history retrieved",
-                "data": [
-                    {
-                        "old_name": "Old Company Name",
-                        "new_name": "New Company Name",
-                        "effective_date": "2021-06-01"
-                    }
-                ]
-            }
 
         Reference:
             - GET /v3/lookup/cac/company/{company_id}/change-of-name
@@ -378,19 +242,6 @@ class MonoLookupClient:
         Returns:
             dict: TIN lookup result.
 
-        Example:
-            >>> client.lookup_tin({"tin": "1234567890"})
-            {
-                "status": "successful",
-                "message": "TIN lookup successful",
-                "data": {
-                    "tin": "1234567890",
-                    "name": "John Doe",
-                    "business_name": "John's Bakery",
-                    "address": "123 Bakery St, Lagos"
-                }
-            }
-
         Reference:
             - POST /v3/lookup/tin
         """
@@ -410,19 +261,6 @@ class MonoLookupClient:
 
         Returns:
             dict: NIN lookup result.
-
-        Example:
-            >>> client.lookup_nin({"nin": "12345678901"})
-            {
-                "status": "successful",
-                "message": "NIN lookup successful",
-                "data": {
-                    "nin": "12345678901",
-                    "name": "John Doe",
-                    "date_of_birth": "1990-01-01",
-                    "gender": "Male"
-                }
-            }
 
         Reference:
             - POST /v3/lookup/nin
@@ -444,20 +282,6 @@ class MonoLookupClient:
         Returns:
             dict: Passport lookup result.
 
-        Example:
-            >>> client.lookup_passport({"passport_number": "A12345678"})
-            {
-                "status": "successful",
-                "message": "Passport lookup successful",
-                "data": {
-                    "passport_number": "A12345678",
-                    "name": "John Doe",
-                    "nationality": "Nigerian",
-                    "date_of_birth": "1990-01-01",
-                    "sex": "Male"
-                }
-            }
-
         Reference:
             - POST /v3/lookup/passport
         """
@@ -477,20 +301,6 @@ class MonoLookupClient:
 
         Returns:
             dict: Driver's license lookup result.
-
-        Example:
-            >>> client.lookup_driver_license({"license_number": "D123456789"})
-            {
-                "status": "successful",
-                "message": "Driver's license lookup successful",
-                "data": {
-                    "license_number": "D123456789",
-                    "name": "John Doe",
-                    "date_of_birth": "1990-01-01",
-                    "sex": "Male",
-                    "expiry_date": "2025-01-01"
-                }
-            }
 
         Reference:
             - POST /v3/lookup/driver_license
@@ -512,19 +322,6 @@ class MonoLookupClient:
         Returns:
             dict: Account number lookup result.
 
-        Example:
-            >>> client.lookup_account_number({"account_number": "1234567890"})
-            {
-                "status": "successful",
-                "message": "Account number lookup successful",
-                "data": {
-                    "account_number": "1234567890",
-                    "bank": "Access Bank",
-                    "bvn": "12345678901",
-                    "account_name": "John Doe"
-                }
-            }
-
         Reference:
             - POST /v3/lookup/account-number
         """
@@ -544,18 +341,6 @@ class MonoLookupClient:
 
         Returns:
             dict: Address verification result.
-
-        Example:
-            >>> client.verify_address({"meter_number": "123456", "house_address": "123 Main St"})
-            {
-                "status": "successful",
-                "message": "Address verification successful",
-                "data": {
-                    "meter_number": "123456",
-                    "house_address": "123 Main St",
-                    "verified": True
-                }
-            }
 
         Reference:
             - POST /v3/lookup/address
@@ -578,19 +363,6 @@ class MonoLookupClient:
         Returns:
             dict: Credit history result.
 
-        Example:
-            >>> client.credit_history("crc", {"bvn": "12345678901"})
-            {
-                "status": "successful",
-                "message": "Credit history retrieved",
-                "data": {
-                    "provider": "crc",
-                    "bvn": "12345678901",
-                    "credit_score": 750,
-                    "credit_limit": 2000000
-                }
-            }
-
         Reference:
             - POST /v3/lookup/credit-history/{provider}
         """
@@ -611,19 +383,6 @@ class MonoLookupClient:
         Returns:
             dict: Mashup result.
 
-        Example:
-            >>> client.mashup({"nin": "12345678901", "bvn": "12345678901", "dob": "1990-01-01"})
-            {
-                "status": "successful",
-                "message": "Mashup verification successful",
-                "data": {
-                    "nin": "12345678901",
-                    "bvn": "12345678901",
-                    "dob": "1990-01-01",
-                    "match": True
-                }
-            }
-
         Reference:
             - POST /v3/lookup/mashup
         """
@@ -640,25 +399,6 @@ class MonoLookupClient:
 
         Returns:
             dict: Bank listing result.
-
-        Example:
-            >>> client.bank_listing()
-            {
-                "status": "successful",
-                "message": "Bank listing retrieved",
-                "data": [
-                    {
-                        "code": "044",
-                        "name": "Access Bank",
-                        "type": "Commercial"
-                    },
-                    {
-                        "code": "063",
-                        "name": "Guaranty Trust Bank",
-                        "type": "Commercial"
-                    }
-                ]
-            }
 
         Reference:
             - POST /v3/lookup/banks
