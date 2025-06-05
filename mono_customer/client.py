@@ -44,32 +44,6 @@ class MonoCustomerClient:
 
         Returns:
             dict: Customer creation response.
-
-        Example:
-            >>> client.create_customer({
-            ...     "email": "johndoe@mono.co",
-            ...     "firstName": "John",
-            ...     "lastName": "Doe",
-            ...     "address": "34 babasuwe street, namaco, ijebu ode, ogun state",
-            ...     "phone": "08003877665",
-            ...     "identity": {"type": "bvn", "number": "01234567891"}
-            ... })
-            {
-                "status": "successful",
-                "message": "Customer created successfully",
-                "data": {
-                    "id": "cus_1234567890abcdef",
-                    "email": "johndoe@mono.co",
-                    "firstName": "John",
-                    "lastName": "Doe",
-                    "address": "34 babasuwe street, namaco, ijebu ode, ogun state",
-                    "phone": "08003877665",
-                    "identity": {"type": "bvn", "number": "01234567891"}
-                }
-            }
-
-        Reference:
-            Mono Customer Postman Collection - Create Customer
         """
         url = f"{self.BASE_URL}/v2/customers"
         resp = self.session.post(url, json=data)
@@ -86,25 +60,6 @@ class MonoCustomerClient:
 
         Returns:
             dict: Customer data.
-
-        Example:
-            >>> client.retrieve_customer("cus_1234567890abcdef")
-            {
-                "status": "successful",
-                "message": "Customer retrieved successfully",
-                "data": {
-                    "id": "cus_1234567890abcdef",
-                    "email": "johndoe@mono.co",
-                    "firstName": "John",
-                    "lastName": "Doe",
-                    "address": "34 babasuwe street, namaco, ijebu ode, ogun state",
-                    "phone": "08003877665",
-                    "identity": {"type": "bvn", "number": "01234567891"}
-                }
-            }
-
-        Reference:
-            Mono Customer Postman Collection - Retrieve Customer
         """
         url = f"{self.BASE_URL}/v2/customers/{customer_id}"
         resp = self.session.get(url)
@@ -121,35 +76,6 @@ class MonoCustomerClient:
 
         Returns:
             dict: List of customers.
-
-        Example:
-            >>> client.list_customers(page=1, limit=10)
-            {
-                "status": "successful",
-                "message": "Customers retrieved successfully",
-                "data": [
-                    {
-                        "id": "cus_1234567890abcdef",
-                        "email": "johndoe@mono.co",
-                        "firstName": "John",
-                        "lastName": "Doe"
-                    },
-                    {
-                        "id": "cus_abcdef1234567890",
-                        "email": "janedoe@mono.co",
-                        "firstName": "Jane",
-                        "lastName": "Doe"
-                    }
-                ],
-                "meta": {
-                    "page": 1,
-                    "limit": 10,
-                    "total": 2
-                }
-            }
-
-        Reference:
-            Mono Customer Postman Collection - List Customers
         """
         url = f"{self.BASE_URL}/v2/customers"
         resp = self.session.get(url, params=params)
@@ -167,20 +93,6 @@ class MonoCustomerClient:
 
         Returns:
             dict: Update response.
-
-        Example:
-            >>> client.update_customer("cus_1234567890abcdef", {"address": "new address"})
-            {
-                "status": "successful",
-                "message": "Customer updated successfully",
-                "data": {
-                    "id": "cus_1234567890abcdef",
-                    "address": "new address"
-                }
-            }
-
-        Reference:
-            Mono Customer Postman Collection - Update Customer
         """
         url = f"{self.BASE_URL}/v2/customers/{customer_id}"
         resp = self.session.patch(url, json=data)
@@ -197,17 +109,6 @@ class MonoCustomerClient:
 
         Returns:
             dict: Delete response.
-
-        Example:
-            >>> client.delete_customer("cus_1234567890abcdef")
-            {
-                "status": "successful",
-                "message": "Customer deleted successfully",
-                "data": null
-            }
-
-        Reference:
-            Mono Customer Postman Collection - Delete Customer
         """
         url = f"{self.BASE_URL}/v2/customers/{customer_id}"
         resp = self.session.delete(url)
@@ -225,29 +126,6 @@ class MonoCustomerClient:
 
         Returns:
             dict: Transactions data.
-
-        Example:
-            >>> client.get_customer_transactions("cus_1234567890abcdef", period="last12months", page=1)
-            {
-                "status": "successful",
-                "message": "Transactions retrieved successfully",
-                "data": [
-                    {
-                        "id": "txn_1",
-                        "amount": 10000,
-                        "type": "debit",
-                        "narration": "Payment for services"
-                    }
-                ],
-                "meta": {
-                    "page": 1,
-                    "limit": 10,
-                    "total": 1
-                }
-            }
-
-        Reference:
-            Mono Customer Postman Collection - Get Customer Transactions
         """
         url = f"{self.BASE_URL}/customers/{customer_id}/transactions"
         resp = self.session.get(url, params=params)
@@ -264,28 +142,6 @@ class MonoCustomerClient:
 
         Returns:
             dict: Linked accounts data.
-
-        Example:
-            >>> client.fetch_linked_accounts(page=1)
-            {
-                "status": "successful",
-                "message": "Linked accounts retrieved successfully",
-                "data": [
-                    {
-                        "id": "acc_1234567890abcdef",
-                        "account_number": "0123456789",
-                        "bank": "GTBank"
-                    }
-                ],
-                "meta": {
-                    "page": 1,
-                    "limit": 10,
-                    "total": 1
-                }
-            }
-
-        Reference:
-            Mono Customer Postman Collection - Fetch Linked Accounts
         """
         url = f"{self.BASE_URL}/v2/accounts"
         resp = self.session.get(url, params=params)
