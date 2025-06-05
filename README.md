@@ -214,3 +214,7 @@ All methods raise `MonoConnectError`, `MonoCustomerError`, `MonoDirectpayError`,
 ## License
 
 MIT
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines on how to contribute to this project.
