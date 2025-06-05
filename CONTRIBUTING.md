@@ -34,7 +34,6 @@ git checkout -b feature/your-feature-name
 Ensure all tests pass before submitting a pull request.
 
 ```sh
-# (Assuming you use pytest or similar)
 pytest
 ```
 
