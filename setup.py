@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mono-sdk",  # changed from mono-connect
-    version="0.1.2",  # Incremented version
+    version="0.1.3",  # Incremented version
     description="Python SDK for Mono APIs (Connect, Customer, Directpay, Lookup)",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
