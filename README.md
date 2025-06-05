@@ -1,4 +1,4 @@
-# mono-connect
+# MONO SDK
 
 Python SDK for Mono Connect APIs.
 
