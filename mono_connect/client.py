@@ -45,37 +45,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Account details.
-
-        Example:
-            >>> client.get_account_details("659d61857baef05dd147fd8f")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T19:35:57.968Z",
-                "data": {
-                    "account": {
-                        "id": "659d61857baef05dd147fd8f",
-                        "name": "Samuel Olamide",
-                        "currency": "NGN",
-                        "type": "savings_account",
-                        "account_number": "0131883461",
-                        "balance": 100000,
-                        "institution": {
-                            "name": "ALAT by WEMA",
-                            "bank_code": "035",
-                            "type": "PERSONAL_BANKING"
-                        },
-                        "bvn": null
-                    },
-                    "customer": {
-                        "id": "659d611c7baef05dd147ed1d"
-                    },
-                    "meta": {
-                        "data_status": "AVAILABLE",
-                        "auth_method": "internet_banking"
-                    }
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}"
         return self._get(url)
@@ -89,26 +58,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Identity information.
-
-        Example:
-            >>> client.get_account_identity("account_id")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T20:41:29.009Z",
-                "data": {
-                    "full_name": "OJO DANIEL",
-                    "email": "email@yahoo.com",
-                    "phone": "08060000000",
-                    "gender": null,
-                    "bvn": "11111111000",
-                    "marital_status": null,
-                    "address_line1": "VICARAGE IYERU",
-                    "address_line2": "CHRCH",
-                    "created_at": "2021-04-29T09:46:49.641Z",
-                    "updated_at": "2021-04-29T09:46:49.641Z"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/identity"
         return self._get(url)
@@ -122,14 +71,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Unlink response.
-
-        Example:
-            >>> client.unlink_account("account_id")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T20:38:12.065Z"
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/unlink"
         return self._post(url)
@@ -144,21 +85,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Account balance.
-
-        Example:
-            >>> client.get_account_balance("6782d72b5874ebd700f01af4")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T20:51:43.326Z",
-                "data": {
-                    "id": "6782d72b5874ebd700f01af4",
-                    "name": "Samuel Olamide",
-                    "account_number": "0131883461",
-                    "balance": 10000000,
-                    "currency": "NGN"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/balance"
         headers = {"x-realtime": "true"} if realtime else {}
@@ -174,21 +100,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Creditworthiness response.
-
-        Example:
-            >>> client.get_creditworthiness("account_id", {
-            ...     "bvn": "12345678901",
-            ...     "principal": 30000000,
-            ...     "interest_rate": 5,
-            ...     "term": 12,
-            ...     "run_credit_check": True
-            ... })
-            {
-                "status": "successful",
-                "message": "The creditworthiness of Samuel Olumide is currently being processed. Once completed, the data will be sent to your webhook.",
-                "timestamp": "2025-01-11T21:13:01.006Z",
-                "data": null
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/creditworthiness/"
         return self._post(url, json=payload)
@@ -204,16 +115,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Transactions data.
-
-        Example:
-            >>> client.get_transactions("6782d72b5874ebd700f01af4", narration="Uber transactions", type="debit", paginate=True, limit=55)
-            {
-                "status": "successful",
-                "message": "No transactions found for the provided date filter, please try again with different date",
-                "timestamp": "2025-01-11T21:37:45.248Z",
-                "data": null,
-                "meta": null
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/transactions"
         return self._get(url, params=params)
@@ -228,28 +129,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Earnings data.
-
-        Example:
-            >>> client.get_account_earnings("65f883fbdd5cd948a675bc4a")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2024-03-15T15:09:13.581Z",
-                "data": [
-                    {
-                        "id": "65d7667c27d138f56c4977d0",
-                        "amount": 1071,
-                        "narration": "Transfer to Wallet from Mrchemicalmusic plan",
-                        "date": "2024-02-13T17:24:30.000Z",
-                        "asset": {
-                            "symbol": null,
-                            "name": "Mrchemicalmusic",
-                            "sale_price": null,
-                            "quantity_sold": null
-                        }
-                    }
-                ]
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/earnings"
         return self._get(url)
@@ -263,33 +142,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Assets data.
-
-        Example:
-            >>> client.get_account_assets("65f8899d64b5baaa044c651a")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2024-03-15T15:10:57.842Z",
-                "data": {
-                    "id": "65d7667c27d138f56c4977cf",
-                    "balances": {"_u_s_d": 0},
-                    "assets": [
-                        {
-                            "name": "Mrchemicalmusic",
-                            "type": "Mixed",
-                            "cost": 1071,
-                            "return": 1071,
-                            "quantity": null,
-                            "currency": "USD",
-                            "details": {
-                                "symbol": null,
-                                "price": null,
-                                "current_balance": 0
-                            }
-                        }
-                    ]
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/assets"
         return self._get(url)
@@ -304,23 +156,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Linking response.
-
-        Example:
-            >>> client.initiate_account_linking({
-            ...     "account_number": "0131883461",
-            ...     "bank_code": "035",
-            ...     "bvn": "12345678901",
-            ...     "email": "samuel@example.com",
-            ...     "phone": "08060000000"
-            ... })
-            {
-                "status": "successful",
-                "message": "Account linking initiated. Please complete the process via the provided link.",
-                "timestamp": "2025-01-11T21:45:00.000Z",
-                "data": {
-                    "link": "https://widget.withmono.com/?token=eyJhbGciOiJIUzI1NiIsInR..."
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/initiate"
         return self._post(url, json=payload)
@@ -334,23 +169,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Reauthorization response.
-
-        Example:
-            >>> client.initiate_account_reauth({
-            ...     "account_number": "0131883461",
-            ...     "bank_code": "035",
-            ...     "bvn": "12345678901",
-            ...     "email": "samuel@example.com",
-            ...     "phone": "08060000000"
-            ... })
-            {
-                "status": "successful",
-                "message": "Account reauthorization initiated. Please complete the process via the provided link.",
-                "timestamp": "2025-01-11T21:46:00.000Z",
-                "data": {
-                    "link": "https://widget.withmono.com/?token=eyJhbGciOiJIUzI1NiIsInR..."
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/initiate"
         return self._post(url, json=payload)
@@ -364,18 +182,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Token exchange response.
-
-        Example:
-            >>> client.token_exchange("authorization_code_from_mono")
-            {
-                "status": "successful",
-                "message": "Token exchange successful.",
-                "timestamp": "2025-01-11T21:47:00.000Z",
-                "data": {
-                    "account_id": "659d61857baef05dd147fd8f",
-                    "access_token": "eyJhbGciOiJIUzI1NiIsInR..."
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/auth"
         return self._post(url, json={"code": code})
@@ -391,22 +197,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Statement data.
-
-        Example:
-            >>> client.get_account_statement("account_id", from_date="2025-01-01", to_date="2025-01-31")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T21:48:00.000Z",
-                "data": {
-                    "id": "statement_id",
-                    "account_id": "659d61857baef05dd147fd8f",
-                    "from_date": "2025-01-01",
-                    "to_date": "2025-01-31",
-                    "generated_at": "2025-01-11T21:48:00.000Z",
-                    "file_url": "https://api.withmono.com/v2/accounts/659d61857baef05dd147fd8f/statement/statement_id"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/statement"
         return self._get(url, params=params)
@@ -421,22 +211,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Statement job status.
-
-        Example:
-            >>> client.get_account_statement_job("account_id", "job_id")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T21:49:00.000Z",
-                "data": {
-                    "id": "job_id",
-                    "account_id": "659d61857baef05dd147fd8f",
-                    "status": "completed",
-                    "created_at": "2025-01-11T21:48:00.000Z",
-                    "completed_at": "2025-01-11T21:49:00.000Z",
-                    "file_url": "https://api.withmono.com/v2/accounts/659d61857baef05dd147fd8f/statement/statement_id"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/accounts/{account_id}/statement/jobs/{job_id}"
         return self._get(url)
@@ -451,21 +225,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Categorisation response.
-
-        Example:
-            >>> client.categorise_transactions("account_id")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T21:50:00.000Z",
-                "data": {
-                    "id": "categorisation_id",
-                    "account_id": "659d61857baef05dd147fd8f",
-                    "status": "completed",
-                    "created_at": "2025-01-11T21:50:00.000Z",
-                    "updated_at": "2025-01-11T21:50:00.000Z"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v1/enrichments/{account_id}/transaction-categorisation"
         return self._get(url)
@@ -479,21 +238,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Categorisation response.
-
-        Example:
-            >>> client.categorise_transactions_csv("/path/to/transactions.csv")
-            {
-                "status": "successful",
-                "message": "Transactions categorised successfully.",
-                "timestamp": "2025-01-11T21:51:00.000Z",
-                "data": {
-                    "id": "categorisation_id",
-                    "account_id": "659d61857baef05dd147fd8f",
-                    "status": "completed",
-                    "created_at": "2025-01-11T21:51:00.000Z",
-                    "updated_at": "2025-01-11T21:51:00.000Z"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/enrichments/transaction-categorisation"
         files = {"transactions": open(file_path, "rb")}
@@ -505,23 +249,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Categorisation records.
-
-        Example:
-            >>> client.get_categorisation_records()
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T21:52:00.000Z",
-                "data": [
-                    {
-                        "id": "categorisation_id",
-                        "account_id": "659d61857baef05dd147fd8f",
-                        "status": "completed",
-                        "created_at": "2025-01-11T21:50:00.000Z",
-                        "updated_at": "2025-01-11T21:50:00.000Z"
-                    }
-                ]
-            }
         """
         url = f"{self.BASE_URL}/v1/enrichments/transaction-categorisation/records"
         return self._get(url)
@@ -535,21 +262,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Metadata enrichment response.
-
-        Example:
-            >>> client.enrich_transaction_metadata("account_id")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T21:53:00.000Z",
-                "data": {
-                    "id": "metadata_id",
-                    "account_id": "659d61857baef05dd147fd8f",
-                    "status": "completed",
-                    "created_at": "2025-01-11T21:53:00.000Z",
-                    "updated_at": "2025-01-11T21:53:00.000Z"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v1/enrichments/{account_id}/transaction-metadata"
         return self._get(url)
@@ -563,21 +275,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Metadata enrichment response.
-
-        Example:
-            >>> client.enrich_transaction_metadata_csv("/path/to/transactions_metadata.csv")
-            {
-                "status": "successful",
-                "message": "Transaction metadata enriched successfully.",
-                "timestamp": "2025-01-11T21:54:00.000Z",
-                "data": {
-                    "id": "metadata_id",
-                    "account_id": "659d61857baef05dd147fd8f",
-                    "status": "completed",
-                    "created_at": "2025-01-11T21:54:00.000Z",
-                    "updated_at": "2025-01-11T21:54:00.000Z"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/enrichments/transaction-metadata"
         files = {"transactions": open(file_path, "rb")}
@@ -589,23 +286,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Metadata records.
-
-        Example:
-            >>> client.get_metadata_records()
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T21:55:00.000Z",
-                "data": [
-                    {
-                        "id": "metadata_id",
-                        "account_id": "659d61857baef05dd147fd8f",
-                        "status": "completed",
-                        "created_at": "2025-01-11T21:53:00.000Z",
-                        "updated_at": "2025-01-11T21:53:00.000Z"
-                    }
-                ]
-            }
         """
         url = f"{self.BASE_URL}/v1/enrichments/transaction-metadata/records"
         return self._get(url)
@@ -619,21 +299,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Statement insights.
-
-        Example:
-            >>> client.get_statement_insights("account_id")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T21:56:00.000Z",
-                "data": {
-                    "id": "insight_id",
-                    "account_id": "659d61857baef05dd147fd8f",
-                    "status": "completed",
-                    "created_at": "2025-01-11T21:56:00.000Z",
-                    "updated_at": "2025-01-11T21:56:00.000Z"
-                }
-            }
         """
         url = f"{self.BASE_URL}/v2/enrichments/{account_id}/statement-insights"
         return self._get(url)
@@ -647,23 +312,6 @@ class MonoConnectClient:
 
         Returns:
             dict: Statement insight records.
-
-        Example:
-            >>> client.get_statement_insight_records("account_id")
-            {
-                "status": "successful",
-                "message": "Request was succesfully completed",
-                "timestamp": "2025-01-11T21:57:00.000Z",
-                "data": [
-                    {
-                        "id": "insight_id",
-                        "account_id": "659d61857baef05dd147fd8f",
-                        "status": "completed",
-                        "created_at": "2025-01-11T21:56:00.000Z",
-                        "updated_at": "2025-01-11T21:56:00.000Z"
-                    }
-                ]
-            }
         """
         url = f"{self.BASE_URL}/v1/enrichments/{account_id}/statement-insights/records"
         return self._get(url)
