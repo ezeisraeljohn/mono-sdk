@@ -18,7 +18,7 @@ Python SDK for Mono Connect APIs.
 ## Installation
 
 ```bash
-pip install mono-connect
+pip install mono-sdk
 ```
 
 ## Usage
