@@ -1,0 +1,7 @@
+.json
+venv
+Mono *
+dist
+__pycache__
+.DS_Store
+mono_connect.egg-info
